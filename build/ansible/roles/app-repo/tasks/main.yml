@@ -25,4 +25,3 @@
   command: chdir=/var/www/weblate-docker/ {{ item }}
   with_items:
     - /bin/docker-compose up --detach 
-

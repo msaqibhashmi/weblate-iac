@@ -1,9 +1,9 @@
 {
     "builders": [{
-        "region": "us-east-1",
+        "region": "us-west-1",
         "type":"amazon-ebs",
         "ssh_username": "centos",
-        "base_ami": "ami-02eac2c0129f6376b"
+        "source_ami": "ami-074e2d6769f445be5",
         "instance_type": "t3.micro",
         "ami_name": "weblate-{{timestamp}}",
       "tags": {
@@ -13,16 +13,23 @@
     }
   }],
     "provisioners": [
-      {
-        "type": "shell",
-        "inline": [
-            "sudo su -",
-            "sleep 5s",
-            "sudo yum update -y",
-            "sudo yum update kernel -y",
-            "sudo yum install epel-release -y",
-            "sudo yum install ansible -y"
-        ]},
+    {
+      "type": "shell",
+      "inline": [
+        "sleep 5s",
+        "sudo setenforce 0",
+        "sudo sed -i 's/enforcing/disabled/g' /etc/selinux/config",
+        "sudo sed -i 's/permissive/disabled/g' /etc/selinux/config",
+        "sudo sed -i 's/targeted/minimum/g' /etc/selinux/config",
+        "sudo yum update -y",
+        "sudo yum update kernel -y",
+        "sudo yum install -y epel-release",
+        "sudo yum install ansible -y",
+        "sudo yum install -y http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm",
+        "sudo yum install -y iptables-services ansible git unzip python2-pip",
+        "sudo pip install --upgrade pip"
+      ]
+    },
       {
         "type": "ansible-local",
         "playbook_file": "ansible/configure.yml",
@@ -38,3 +45,4 @@
       }
    ]
 }
+
