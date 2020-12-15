@@ -1,0 +1,12 @@
+version: "3"
+services:
+  weblate:
+    image: weblate/weblate
+    volumes:
+      - weblate-data:/app/data
+    env_file:
+      - ./environment
+    restart: always
+
+volumes:
+  weblate-data: {}

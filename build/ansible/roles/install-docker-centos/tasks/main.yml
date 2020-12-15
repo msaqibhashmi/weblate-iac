@@ -1,0 +1,37 @@
+---
+
+- name: Installing docker pre-requisite
+  yum:
+    state: present
+    pkg:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+
+- name: Adding docker repository
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+    mode: 0644
+  become: yes
+
+- name: Installing docker
+  yum:
+    state: present
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+
+- name: Download and install Docker Compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.27.3/docker-compose-Linux-x86_64
+    dest: /usr/bin/docker-compose
+    mode: 0755
+
+- name: Starting docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes

@@ -1,0 +1,28 @@
+---
+
+- name: Deploying git weblate-docker
+  git:
+    repo: https://github.com/WeblateOrg/docker-compose.git
+    dest: /var/www/weblate-docker
+    accept_hostkey: yes
+
+- name: Configuring docker-compose.yml
+  template:
+     src: docker-compose.j2
+     dest: /var/www/weblate-docker/docker-compose.yml
+
+- name: Configuring docker-compose.override.yml
+  template: 
+     src: docker-compose.override.j2
+     dest: /var/www/weblate-docker/docker-compose.override.yml
+
+- name: Configuring environment file
+  template: 
+     src: environment.j2
+     dest: /var/www/weblate-docker/environment
+
+- name: Running docker-compose up
+  command: chdir=/var/www/weblate-docker/ {{ item }}
+  with_items:
+    - /bin/docker-compose up --detach 
+
