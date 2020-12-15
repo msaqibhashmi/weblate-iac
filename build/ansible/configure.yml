@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  vars:
+      SERVICE_INITIALS: "member"
+      SERVICE_NAME: "my.purevpn.com"
+      DOCUMENT_ROOT: "/public"
+      SERVICE_REPO: "purevpn/member-area.git"
+      SERVICE_REPO_VERSION: "GIT_REVISION"
+
+  roles:

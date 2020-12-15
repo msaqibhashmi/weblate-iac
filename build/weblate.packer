@@ -1,0 +1,40 @@
+{
+    "builders": [{
+        "region": "us-east-1",
+        "type":"amazon-ebs",
+        "ssh_username": "centos",
+        "base_ami": "ami-02eac2c0129f6376b"
+        "instance_type": "t3.micro",
+        "ami_name": "weblate-{{timestamp}}",
+      "tags": {
+        "Name": "weblate",
+        "Application": "Weblate",
+        "Environment": "Production"
+    }
+  }],
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": [
+            "sudo su -",
+            "sleep 5s",
+            "sudo yum update -y",
+            "sudo yum update kernel -y",
+            "sudo yum install epel-release -y",
+            "sudo yum install ansible -y"
+        ]},
+      {
+        "type": "ansible-local",
+        "playbook_file": "ansible/configure.yml",
+        "playbook_dir": "ansible"
+      },
+      {
+        "type": "shell",
+        "inline": [
+          "sleep 5s",
+          "sudo yum remove -y epel-release ansible",
+          "sudo rm -rf /home/centos/.ansible"
+        ]
+      }
+   ]
+}
