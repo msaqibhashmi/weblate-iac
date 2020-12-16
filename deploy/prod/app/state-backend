@@ -1,0 +1,9 @@
+terraform {
+  backend "s3" {
+    encrypt        = true
+    region         = "us-east-2"
+    dynamodb_table = "iac-state-locks"
+    bucket         = "iac-state-manager"
+    key            = "prod/weblate/app/vDEPLOYMENT_NUMBER/terraform.tfstate"
+  }
+}

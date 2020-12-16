@@ -1,0 +1,46 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "JenkinsRoleEc2",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:TerminateInstances",
+                "ec2:RequestSpotInstances",
+                "ec2:DeleteTags",
+                "ec2:CreateTags",
+                "ec2:DescribeRegions",
+                "ec2:RunInstances",
+                "ec2:DescribeSpotInstanceRequests",
+                "ec2:StopInstances",
+                "ec2:DescribeSecurityGroups",
+                "ec2:GetConsoleOutput",
+                "ec2:DescribeImages",
+                "ec2:CancelSpotInstanceRequests",
+                "iam:ListInstanceProfilesForRole",
+                "ec2:GetPasswordData",
+                "iam:PassRole",
+                "ec2:StartInstances",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeKeyPairs"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "JenkinsRoleS3",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::devops-atom-backups/*",
+                "arn:aws:s3:::devops-atom-backups"
+            ]
+        }
+    ]
+}

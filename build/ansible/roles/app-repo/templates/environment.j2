@@ -13,6 +13,25 @@ WEBLATE_DEFAULT_FROM_EMAIL=weblate@example.com
 WEBLATE_ALLOWED_HOSTS=*
 WEBLATE_REGISTRATION_OPEN=1
 
+# PostgreSQL setup
+POSTGRES_PASSWORD=ChangeMe
+POSTGRES_USER=weblate
+POSTGRES_DATABASE=weblate
+POSTGRES_HOST=weblate.db.demo.local
+POSTGRES_PORT=5432
+
+# Cache setup
+# https://docs.weblate.org/en/latest/admin/install.html#production-cache
+REDIS_HOST=weblate.cache.demo.local
+REDIS_PORT=6379
+
+# Mail server, the server has to listen on port 587 and understand TLS
+WEBLATE_EMAIL_HOST=127.0.0.1
+# Do NOT use quotes here
+WEBLATE_EMAIL_HOST_USER=
+# Do NOT use quotes here
+WEBLATE_EMAIL_HOST_PASSWORD=
+
 # Extra
 #WEBLATE_TIME_ZONE=
 #WEBLATE_MT_GOOGLE_KEY=
@@ -35,25 +54,6 @@ WEBLATE_REGISTRATION_OPEN=1
 #WEBLATE_AUTH_LDAP_SERVER_URI=ldap://ldap.example.org
 #WEBLATE_AUTH_LDAP_USER_DN_TEMPLATE=uid=%(user)s,ou=People,dc=example,dc=net
 #WEBLATE_AUTH_LDAP_USER_ATTR_MAP=first_name:name,email:mail
-
-# PostgreSQL setup
-POSTGRES_PASSWORD=weblate
-POSTGRES_USER=weblate
-POSTGRES_DATABASE=weblate
-POSTGRES_HOST=rds-host
-POSTGRES_PORT=
-
-# Cache setup
-# https://docs.weblate.org/en/latest/admin/install.html#production-cache
-REDIS_HOST=elasticache
-REDIS_PORT=6379
-
-# Mail server, the server has to listen on port 587 and understand TLS
-WEBLATE_EMAIL_HOST=127.0.0.1
-# Do NOT use quotes here
-WEBLATE_EMAIL_HOST_USER=
-# Do NOT use quotes here
-WEBLATE_EMAIL_HOST_PASSWORD=
 
 # GitLab lab setup
 # WEBLATE_GITLAB_USERNAME=
