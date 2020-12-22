@@ -11,15 +11,15 @@ variable "delete_protection" {
 }
 
 variable "Name" {
-  default = "weblate-prod-web-v1"
+  default = "weblate-prod-web-vDEPLOYMENT_NUMBER"
 }
 
 variable "alarm_high_cpu_name" {
-  default = "weblate-prod-web-v1"
+  default = "weblate-prod-web-vDEPLOYMENT_NUMBER"
 }
 
 variable "alarm_low_cpu_name" {
-  default = "weblate-prod-web-v1-low-cpu"
+  default = "weblate-prod-web-vDEPLOYMENT_NUMBER-low-cpu"
 }
 
 variable "Application" {

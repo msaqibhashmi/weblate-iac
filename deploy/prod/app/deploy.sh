@@ -37,3 +37,5 @@ fi
 # Keeping terraform state
 mkdir terraform-states/v$COUNTER
 mv terraform.tfstate terraform-states/v$COUNTER/
+git reset --hard
+
